@@ -1,0 +1,54 @@
+ADC sensor
+   ¦
+   ?
+adc_value = ADC_Read()
+   ¦
+   ?
+UART_Tx(adc_value)
+   ¦
+   ?
+Rx_data = UART_Rx()
+   ¦
+   ?
+Adc_display(Rx_data)
+   ¦
+   ?
+LCD shows ADC value
+//same=Uart_tx(Adc_value)//unsigned rx_data ;rx_data=Uart_rx();adc_display(rx_data);
+void main()
+{
+    char Rx_data[3];
+    unsigned int Adc_value;
+
+    UART_Init();
+    lcd_init();
+    lcd_cmd(0x80);        
+    lcd_str("Adc_value:");
+
+    while(1)
+    {
+        // Receive 3 characters into Rx_data
+        Received(Rx_data, 3);
+
+        // Read ADC value
+        Adc_value = Adc_read();
+
+        // Display ADC value
+        lcd_cmd(0xC0);
+        Adc_display(Adc_value);        
+        lcd_data(0xDF);
+        lcd_data('C');
+
+        // Transmit received data back with a colon
+        for(int i=0; i<3; i++)
+            UART_Tx(Rx_data[i]);
+        UART_Tx(':');
+    }
+}
+
+void Received(char *ptr, char length)
+{
+    int i;
+    for(i=0; i<length; i++)
+        *(ptr+i) = UART_Rx();   // store actual UART data
+}

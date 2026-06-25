@@ -1,0 +1,17 @@
+ADC sensor
+   ¦
+   ?
+adc_value = ADC_Read()
+   ¦
+   ?
+UART_Tx(adc_value)
+   ¦
+   ?
+Rx_data = UART_Rx()
+   ¦
+   ?
+Adc_display(Rx_data)
+   ¦
+   ?
+LCD shows ADC value
+//same=Uart_tx(Adc_value)//unsigned rx_data ;rx_data=Uart_rx();adc_display(rx_data);

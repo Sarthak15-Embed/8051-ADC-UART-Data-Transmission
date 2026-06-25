@@ -1,0 +1,8 @@
+".\Objects\STARTUP.obj",
+".\Objects\ADC_transmit_LCD.obj",
+".\Objects\delay.obj",
+".\Objects\LCD_4bit.obj",
+".\Objects\uart.obj",
+".\Objects\ADC.obj" 
+TO ".\Objects\ADC_transmit_LCD" 
+PRINT(".\Listings\ADC_transmit_LCD.m51")
